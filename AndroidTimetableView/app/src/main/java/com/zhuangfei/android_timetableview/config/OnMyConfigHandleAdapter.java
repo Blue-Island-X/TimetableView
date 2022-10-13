@@ -1,7 +1,6 @@
 package com.zhuangfei.android_timetableview.config;
 
-import android.graphics.Color;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.zhuangfei.timetable.TimetableView;
 import com.zhuangfei.timetable.listener.ISchedule;

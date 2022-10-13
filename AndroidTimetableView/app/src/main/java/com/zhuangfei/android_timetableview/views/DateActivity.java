@@ -1,7 +1,6 @@
 package com.zhuangfei.android_timetableview.views;
 
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -16,11 +15,9 @@ import com.zhuangfei.android_timetableview.model.MySubject;
 import com.zhuangfei.android_timetableview.model.SubjectRepertory;
 import com.zhuangfei.timetable.TimetableView;
 import com.zhuangfei.timetable.listener.ISchedule;
-import com.zhuangfei.timetable.listener.OnDateBuildAapter;
+import com.zhuangfei.timetable.listener.OnDateBuildAdapter;
 import com.zhuangfei.timetable.utils.ScreenUtils;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class DateActivity extends AppCompatActivity {
@@ -105,7 +102,7 @@ public class DateActivity extends AppCompatActivity {
      */
     protected void customDateView() {
         mTimetableView.callback(
-                new OnDateBuildAapter() {
+                new OnDateBuildAdapter() {
                     @Override
                     public View onBuildDayLayout(LayoutInflater mInflate, int pos, int width, int height) {
                         int newHeight=ScreenUtils.dip2px(DateActivity.this,30);

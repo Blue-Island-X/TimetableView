@@ -1,12 +1,9 @@
 package com.zhuangfei.android_timetableview.views;
 
-import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.zhuangfei.android_timetableview.R;
 import com.zhuangfei.android_timetableview.adapter.OnDateDelayAdapter;
@@ -14,19 +11,10 @@ import com.zhuangfei.android_timetableview.model.MySubject;
 import com.zhuangfei.android_timetableview.model.SubjectRepertory;
 import com.zhuangfei.timetable.TimetableView;
 import com.zhuangfei.timetable.listener.ISchedule;
-import com.zhuangfei.timetable.listener.IWeekView;
-import com.zhuangfei.timetable.listener.OnDateBuildAapter;
-import com.zhuangfei.timetable.listener.OnSpaceItemClickAdapter;
-import com.zhuangfei.timetable.model.Schedule;
-import com.zhuangfei.timetable.model.ScheduleSupport;
-import com.zhuangfei.timetable.view.WeekView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**

@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 
 import com.zhuangfei.timetable.listener.ISchedule;
 import com.zhuangfei.timetable.listener.OnConfigHandleAdapter;
-import com.zhuangfei.timetable.listener.OnDateBuildAapter;
+import com.zhuangfei.timetable.listener.OnDateBuildAdapter;
 import com.zhuangfei.timetable.listener.OnFlagLayoutClickAdapter;
 import com.zhuangfei.timetable.listener.OnItemBuildAdapter;
 import com.zhuangfei.timetable.listener.OnItemClickAdapter;
@@ -357,7 +357,7 @@ public class TimetableView extends LinearLayout {
      * @return
      */
     public ISchedule.OnDateBuildListener onDateBuildListener() {
-        if (onDateBuildListener == null) onDateBuildListener = new OnDateBuildAapter();
+        if (onDateBuildListener == null) onDateBuildListener = new OnDateBuildAdapter();
         return onDateBuildListener;
     }
 

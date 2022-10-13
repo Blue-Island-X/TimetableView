@@ -1,9 +1,7 @@
 package com.zhuangfei.timetable.listener;
 
 
-import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -13,18 +11,16 @@ import com.zhuangfei.android_timetableview.sample.R;
 import com.zhuangfei.timetable.model.ScheduleSupport;
 import com.zhuangfei.timetable.utils.ColorUtils;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
  * 日期栏的构建过程.
  */
 
-public class OnDateBuildAapter implements ISchedule.OnDateBuildListener {
+public class OnDateBuildAdapter implements ISchedule.OnDateBuildListener {
 
-    private static final String TAG = "OnDateBuildAapter";
+    private static final String TAG = "OnDateBuildAdapter";
 
     //第一个：月份，之后7个表示周一至周日
     protected TextView[] textViews = new TextView[8];
@@ -37,7 +33,7 @@ public class OnDateBuildAapter implements ISchedule.OnDateBuildListener {
     protected List<String> weekDates;
     protected LinearLayout layout;
 
-    public OnDateBuildAapter setBackground(int background) {
+    public OnDateBuildAdapter setBackground(int background) {
         this.background = background;
         return this;
     }

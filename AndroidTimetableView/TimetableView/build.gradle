@@ -5,8 +5,15 @@ plugins {
 android {
     compileSdkVersion 32
 
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 32
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
     dependencies {
-        implementation 'com.github.JavaNoober.BackgroundLibrary:library:1.7.5'
+        implementation 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.5'
     }
 
     buildTypes {

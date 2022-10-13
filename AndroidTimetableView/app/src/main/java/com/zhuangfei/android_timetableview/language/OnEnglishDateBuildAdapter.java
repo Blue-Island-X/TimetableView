@@ -1,12 +1,12 @@
 package com.zhuangfei.android_timetableview.language;
 
-import com.zhuangfei.timetable.listener.OnDateBuildAapter;
+import com.zhuangfei.timetable.listener.OnDateBuildAdapter;
 import com.zhuangfei.timetable.model.ScheduleSupport;
 
 /**
  * 英语日期栏
  */
-public class OnEnglishDateBuildAdapter extends OnDateBuildAapter {
+public class OnEnglishDateBuildAdapter extends OnDateBuildAdapter {
     @Override
     public String[] getStringArray() {
         return new String[]{null, "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};

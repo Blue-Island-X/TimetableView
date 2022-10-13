@@ -2,7 +2,7 @@ package com.zhuangfei.android_timetableview.adapter;
 
 import android.text.TextUtils;
 import android.widget.LinearLayout;
-import com.zhuangfei.timetable.listener.OnDateBuildAapter;
+import com.zhuangfei.timetable.listener.OnDateBuildAdapter;
 import com.zhuangfei.timetable.model.ScheduleSupport;
 
 import java.text.SimpleDateFormat;
@@ -12,7 +12,7 @@ import java.util.List;
  * 自定义日期栏
  * Created by Liu ZhuangFei on 2018/8/24.
  */
-public class OnDateDelayAdapter extends OnDateBuildAapter {
+public class OnDateDelayAdapter extends OnDateBuildAdapter {
 
     /**
      * 阈值，即超过这个时间戳后开始更新日期

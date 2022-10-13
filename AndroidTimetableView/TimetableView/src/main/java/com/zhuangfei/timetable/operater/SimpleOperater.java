@@ -3,6 +3,7 @@ package com.zhuangfei.timetable.operater;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -13,10 +14,12 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.noober.background.drawable.DrawableCreator;
 import com.zhuangfei.android_timetableview.sample.R;
 import com.zhuangfei.timetable.TimetableView;
 import com.zhuangfei.timetable.listener.ISchedule;
 import com.zhuangfei.timetable.model.Schedule;
+import com.zhuangfei.timetable.model.ScheduleColorSet;
 import com.zhuangfei.timetable.model.ScheduleConfig;
 import com.zhuangfei.timetable.model.ScheduleSupport;
 import com.zhuangfei.timetable.utils.ColorUtils;
@@ -181,23 +184,34 @@ public class SimpleOperater extends AbsOperater{
         countTextView.setText("");
         countTextView.setVisibility(View.GONE);
 
-        GradientDrawable gd = new GradientDrawable();
+        DrawableCreator.Builder drawableCreator = new DrawableCreator.Builder();
         if (isThisWeek) {
             textView.setTextColor(mView.itemTextColorWithThisWeek());
-            Map<String,Integer> colorMap=mView.colorPool().getColorMap();
-            if(!colorMap.isEmpty()&&colorMap.containsKey(subject.getName())){
-                gd.setColor(ColorUtils.alphaColor(colorMap.get(subject.getName()),mView.itemAlpha()));
-            }else{
-                gd.setColor(mView.colorPool().getColorAutoWithAlpha(subject.getColorRandom(), mView.itemAlpha()));
+            Map<String, ScheduleColorSet> colorMap = mView.colorPool().getColorMap();
+            if (!colorMap.isEmpty() && colorMap.containsKey(subject.getName())){
+                ScheduleColorSet colorSet = colorMap.get(subject.getName());
+                if (colorSet != null) {
+                    textView.setTextColor(colorSet.getTextColor());
+                    drawableCreator.setStrokeColor(ColorUtils.alphaColor(colorSet.getBorderColor(), mView.itemAlpha()));
+                    drawableCreator.setSolidColor(ColorUtils.alphaColor(colorSet.getBackgroundColor(), mView.itemAlpha()));
+                }
+            } else {
+                ScheduleColorSet colorSet = mView.colorPool().getColorAutoWithAlpha(subject.getColorRandom(), mView.itemAlpha());
+                if (colorSet != null) {
+                    textView.setTextColor(colorSet.getTextColor());
+                    drawableCreator.setStrokeColor(ColorUtils.alphaColor(colorSet.getBorderColor(), mView.itemAlpha()));
+                    drawableCreator.setSolidColor(ColorUtils.alphaColor(colorSet.getBackgroundColor(), mView.itemAlpha()));
+                }
             }
-            gd.setCornerRadius(mView.corner(true));
+            drawableCreator.setStrokeWidth(1);
+            drawableCreator.setCornersRadius(mView.corner(true));
 
-            List<Schedule> clist = ScheduleSupport.findSubjects(subject, originData);
+            List<Schedule> courseList = ScheduleSupport.findSubjects(subject, originData);
             int count =0;
-            if(clist!=null){
-                for(int k=0;k<clist.size();k++){
-                    Schedule p=clist.get(k);
-                    if(p!=null&&ScheduleSupport.isThisWeek(p,curWeek)) count++;
+            if (courseList != null) {
+                for (int k = 0; k < courseList.size(); k++){
+                    Schedule p = courseList.get(k);
+                    if (p != null && ScheduleSupport.isThisWeek(p, curWeek)) count++;
                 }
             }
             if (count > 1) {
@@ -206,17 +220,30 @@ public class SimpleOperater extends AbsOperater{
             }
         } else {
             textView.setTextColor(mView.itemTextColorWithNotThis());
-            Map<String,Integer> colorMap=mView.colorPool().getColorMap();
-            if(!colorMap.isEmpty()&&mView.colorPool().isIgnoreUserlessColor()&&colorMap.containsKey(subject.getName())){
-                gd.setColor(ColorUtils.alphaColor(colorMap.get(subject.getName()),mView.itemAlpha()));
-            }else{
-                gd.setColor(mView.colorPool().getUselessColorWithAlpha(mView.itemAlpha()));
+            Map<String, ScheduleColorSet> colorMap = mView.colorPool().getColorMap();
+            if (!colorMap.isEmpty() && mView.colorPool().isIgnoreUselessColor() && colorMap.containsKey(subject.getName())){
+                ScheduleColorSet colorSet = colorMap.get(subject.getName());
+                if (colorSet != null) {
+                    ColorUtils.alphaColor(colorSet, mView.itemAlpha());
+
+                    textView.setTextColor(colorSet.getTextColor());
+                    drawableCreator.setStrokeColor(colorSet.getBorderColor());
+                    drawableCreator.setSolidColor(colorSet.getBackgroundColor());
+                }
+            } else {
+                ScheduleColorSet colorSet = mView.colorPool().getUselessColorWithAlpha(mView.itemAlpha());
+                if (colorSet != null) {
+                    textView.setTextColor(colorSet.getTextColor());
+                    drawableCreator.setStrokeColor(colorSet.getBorderColor());
+                    drawableCreator.setSolidColor(colorSet.getBackgroundColor());
+                }
             }
-            gd.setCornerRadius(mView.corner(false));
+            drawableCreator.setStrokeWidth(1);
+            drawableCreator.setCornersRadius(mView.corner(false));
         }
 
-        textView.setBackgroundDrawable(gd);
-        mView.onItemBuildListener().onItemUpdate(layout, textView, countTextView, subject, gd);
+        layout.setBackgroundDrawable(drawableCreator.build());
+        mView.onItemBuildListener().onItemUpdate(layout, textView, countTextView, subject, null);
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -269,7 +296,7 @@ public class SimpleOperater extends AbsOperater{
      * 点击panel时的事件响应
      */
     protected void onPanelClicked(View view, float y) {
-        if(mView.isShowFlaglayout()){
+        if (mView.isShowFlaglayout()){
             flagLayout.setVisibility(View.VISIBLE);
         }else{
             flagLayout.setVisibility(View.GONE);

@@ -31,7 +31,7 @@ public class OnMyConfigHandleAdapter implements ISchedule.OnConfigHandleListener
                 else mView.isShowNotCurWeek(false);
                 break;
             case CONFIG_USERLESSS_COLOR:
-                mView.colorPool().setUselessColor(Color.parseColor(value));
+                // mView.colorPool().setUselessColor(Color.parseColor(value));
                 break;
 
                 default:break;

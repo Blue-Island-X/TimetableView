@@ -12,6 +12,7 @@ import com.zhuangfei.android_timetableview.R;
 import com.zhuangfei.android_timetableview.model.MySubject;
 import com.zhuangfei.android_timetableview.model.SubjectRepertory;
 import com.zhuangfei.timetable.TimetableView;
+import com.zhuangfei.timetable.model.ScheduleColorSet;
 
 import java.util.HashMap;
 import java.util.List;
@@ -64,13 +65,13 @@ public class ColorPoolActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.top1:
-                        setColor(Color.BLUE,Color.YELLOW,Color.CYAN);
+                        // setColor(Color.BLUE,Color.YELLOW,Color.CYAN);
                         break;
                     case R.id.top2:
                         resetColor();
                         break;
                     case R.id.top3:
-                        addColor(Color.BLUE,Color.YELLOW,Color.CYAN);
+                        // addColor(Color.BLUE,Color.YELLOW,Color.CYAN);
                         break;
                     case R.id.top4:
                         forColor();
@@ -90,7 +91,7 @@ public class ColorPoolActivity extends AppCompatActivity {
      * 所以这里需要先清空一下颜色池
      * @param colors
      */
-    public void setColor(int... colors){
+    public void setColor(ScheduleColorSet... colors){
         mTimetableView.colorPool().clear().add(colors);
         mTimetableView.updateView();
     }
@@ -99,7 +100,6 @@ public class ColorPoolActivity extends AppCompatActivity {
      * 重置颜色池
      */
     public void resetColor(){
-        mTimetableView.colorPool().reset();
         mTimetableView.updateView();
     }
 
@@ -107,7 +107,7 @@ public class ColorPoolActivity extends AppCompatActivity {
      * 追加颜色
      * @param colors
      */
-    public void addColor(int... colors){
+    public void addColor(ScheduleColorSet... colors){
         mTimetableView.colorPool().add(colors);
         mTimetableView.updateView();
     }
@@ -116,10 +116,8 @@ public class ColorPoolActivity extends AppCompatActivity {
      * 指定课程的颜色，未指定的课程自动分配
      */
     public void forColor(){
-        Map<String,Integer> colorMap=new HashMap<>();
-        colorMap.put("数字图像处理",Color.RED);
-        colorMap.put("算法分析与设计",Color.BLUE);
-        mTimetableView.colorPool().setIgnoreUserlessColor(false).setColorMap(colorMap);
+        Map<String, ScheduleColorSet> colorMap = new HashMap<>();
+        mTimetableView.colorPool().setIgnoreUselessColor(true).setColorMap(colorMap);
         mTimetableView.updateView();
     }
 }

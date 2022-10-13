@@ -63,7 +63,7 @@ public class NonViewAdapter extends BaseAdapter {
         Schedule schedule= (Schedule) getItem(i);
         ScheduleColorPool colorPool=new ScheduleColorPool(context);
         holder.nameTextView.setText(schedule.getName());
-        holder.colorTextView.setBackgroundColor(colorPool.getColorAuto(schedule.getColorRandom()));
+        // holder.colorTextView.setBackgroundColor(colorPool.getColorAuto(schedule.getColorRandom()));
         return convertView;
     }
 

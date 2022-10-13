@@ -169,7 +169,7 @@ public class ItemStyleActivity extends AppCompatActivity {
      * @param color
      */
     public void setNonThisWeekBgcolor(int color) {
-        mTimetableView.colorPool().setUselessColor(color);
+        // mTimetableView.colorPool().setUselessColor(color);
         mTimetableView.updateView();
     }
 

@@ -1,9 +1,7 @@
 package com.zhuangfei.timetable.model;
 
 import android.content.Context;
-import android.graphics.Color;
 
-import com.zhuangfei.android_timetableview.sample.R;
 import com.zhuangfei.timetable.utils.ColorUtils;
 
 import java.util.ArrayList;

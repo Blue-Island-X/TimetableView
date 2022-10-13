@@ -14,6 +14,7 @@ import com.zhuangfei.android_timetableview.model.MySubject;
 import com.zhuangfei.android_timetableview.model.SubjectRepertory;
 import com.zhuangfei.timetable.TimetableView;
 import com.zhuangfei.timetable.listener.ISchedule;
+import com.zhuangfei.timetable.listener.OnFlagLayoutClickAdapter;
 import com.zhuangfei.timetable.model.Schedule;
 
 import java.util.List;
@@ -21,12 +22,12 @@ import java.util.List;
 /**
  * 旗标布局演示：点击空白格子后会有一个小方块，可监听事件
  *
- * @see com.zhuangfei.timetable.listener.ISchedule.OnFlaglayoutClickListener
- * @see com.zhuangfei.timetable.listener.OnFlaglayoutClickAdapter
+ * @see com.zhuangfei.timetable.listener.ISchedule.OnFlagLayoutClickListener
+ * @see com.zhuangfei.timetable.listener.OnFlagLayoutClickAdapter
  * @see com.zhuangfei.timetable.listener.ISchedule.OnSpaceItemClickListener
  * @see com.zhuangfei.timetable.listener.OnSpaceItemClickAdapter
  */
-public class FlaglayoutActivity extends AppCompatActivity {
+public class FlagLayoutActivity extends AppCompatActivity {
 
     TimetableView mTimetableView;
     Button moreButton;
@@ -64,16 +65,16 @@ public class FlaglayoutActivity extends AppCompatActivity {
                 .callback(new ISchedule.OnItemLongClickListener() {
                     @Override
                     public void onLongClick(View v, int day, int start) {
-                        Toast.makeText(FlaglayoutActivity.this,
+                        Toast.makeText(FlagLayoutActivity.this,
                                 "长按:周" + day  + ",第" + start + "节",
                                 Toast.LENGTH_SHORT).show();
                     }
                 })
-                .callback(new ISchedule.OnFlaglayoutClickListener() {
+                .callback(new ISchedule.OnFlagLayoutClickListener() {
                     @Override
-                    public void onFlaglayoutClick(int day, int start) {
+                    public void onFlagLayoutClick(int day, int start) {
                         mTimetableView.hideFlaglayout();
-                        Toast.makeText(FlaglayoutActivity.this,
+                        Toast.makeText(FlagLayoutActivity.this,
                                 "点击了旗标:周" + (day + 1) + ",第" + start + "节",
                                 Toast.LENGTH_SHORT).show();
                     }

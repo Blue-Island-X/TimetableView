@@ -73,9 +73,9 @@ public class WakeupFragment extends Fragment {
                 .maxSlideItem(10)
                 .monthWidthDp(30)
                 //旗标布局点击监听
-                .callback(new ISchedule.OnFlaglayoutClickListener() {
+                .callback(new ISchedule.OnFlagLayoutClickListener() {
                     @Override
-                    public void onFlaglayoutClick(int day, int start) {
+                    public void onFlagLayoutClick(int day, int start) {
                         mTimetableView.hideFlaglayout();
                         Toast.makeText(getContext(),
                                 "点击了旗标:周" + (day + 1) + ",第" + start + "节",

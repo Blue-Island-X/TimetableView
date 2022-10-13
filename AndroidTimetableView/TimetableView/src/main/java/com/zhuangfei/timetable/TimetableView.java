@@ -1,16 +1,16 @@
 package com.zhuangfei.timetable;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import com.zhuangfei.timetable.listener.ISchedule;
 import com.zhuangfei.timetable.listener.OnConfigHandleAdapter;
 import com.zhuangfei.timetable.listener.OnDateBuildAapter;
-import com.zhuangfei.timetable.listener.OnFlaglayoutClickAdapter;
+import com.zhuangfei.timetable.listener.OnFlagLayoutClickAdapter;
 import com.zhuangfei.timetable.listener.OnItemBuildAdapter;
 import com.zhuangfei.timetable.listener.OnItemClickAdapter;
 import com.zhuangfei.timetable.listener.OnItemLongClickAdapter;
@@ -26,7 +26,6 @@ import com.zhuangfei.timetable.model.ScheduleSupport;
 import com.zhuangfei.timetable.operater.SimpleOperater;
 import com.zhuangfei.timetable.utils.ScreenUtils;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,7 +104,7 @@ public class TimetableView extends LinearLayout {
     private ISchedule.OnItemBuildListener onItemBuildListener;//课程表item构建监听
     private ISchedule.OnSlideBuildListener onSlideBuildListener;//侧边栏构建监听
     private ISchedule.OnSpaceItemClickListener onSpaceItemClickListener;//空白格子点击监听
-    private ISchedule.OnFlaglayoutClickListener onFlaglayoutClickListener;//旗标布局点击监听
+    private ISchedule.OnFlagLayoutClickListener onFlagLayoutClickListener;//旗标布局点击监听
     private ISchedule.OnConfigHandleListener onConfigHandleListener;
 
 
@@ -474,11 +473,11 @@ public class TimetableView extends LinearLayout {
     /**
      * 设置旗标布局点击监听器
      *
-     * @param onFlaglayoutClickListener
+     * @param onFlagLayoutClickListener
      * @return
      */
-    public TimetableView callback(ISchedule.OnFlaglayoutClickListener onFlaglayoutClickListener) {
-        this.onFlaglayoutClickListener = onFlaglayoutClickListener;
+    public TimetableView callback(ISchedule.OnFlagLayoutClickListener onFlagLayoutClickListener) {
+        this.onFlagLayoutClickListener = onFlagLayoutClickListener;
         return this;
     }
 
@@ -487,10 +486,10 @@ public class TimetableView extends LinearLayout {
      *
      * @return
      */
-    public ISchedule.OnFlaglayoutClickListener onFlaglayoutClickListener() {
-        if (onFlaglayoutClickListener == null)
-            onFlaglayoutClickListener = new OnFlaglayoutClickAdapter();
-        return onFlaglayoutClickListener;
+    public ISchedule.OnFlagLayoutClickListener onFlaglayoutClickListener() {
+        if (onFlagLayoutClickListener == null)
+            onFlagLayoutClickListener = new OnFlagLayoutClickAdapter();
+        return onFlagLayoutClickListener;
     }
 
     /**
@@ -716,7 +715,8 @@ public class TimetableView extends LinearLayout {
      * @return
      */
     public int dp2px(int dp) {
-        return context.getResources().getDimensionPixelSize(dp);
+        final float scale = Resources.getSystem().getDisplayMetrics().density;
+        return (int) (dp * scale + 0.5f);
     }
 
     /**

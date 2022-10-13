@@ -14,16 +14,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zhuangfei.android_timetableview.R;
-import com.zhuangfei.android_timetableview.custom.CustomOperater;
 import com.zhuangfei.android_timetableview.model.MySubject;
 import com.zhuangfei.android_timetableview.model.SubjectRepertory;
 import com.zhuangfei.timetable.TimetableView;
 import com.zhuangfei.timetable.listener.ISchedule;
 import com.zhuangfei.timetable.listener.IWeekView;
 import com.zhuangfei.timetable.listener.OnSlideBuildAdapter;
-import com.zhuangfei.timetable.listener.OnSpaceItemClickAdapter;
 import com.zhuangfei.timetable.model.Schedule;
-import com.zhuangfei.timetable.model.ScheduleSupport;
 import com.zhuangfei.timetable.view.WeekView;
 
 import java.util.List;
@@ -137,9 +134,9 @@ public class BaseFuncActivity extends AppCompatActivity implements View.OnClickL
                     }
                 })
                 //旗标布局点击监听
-                .callback(new ISchedule.OnFlaglayoutClickListener() {
+                .callback(new ISchedule.OnFlagLayoutClickListener() {
                     @Override
-                    public void onFlaglayoutClick(int day, int start) {
+                    public void onFlagLayoutClick(int day, int start) {
                         mTimetableView.hideFlaglayout();
                         Toast.makeText(BaseFuncActivity.this,
                                 "点击了旗标:周" + (day + 1) + ",第" + start + "节",

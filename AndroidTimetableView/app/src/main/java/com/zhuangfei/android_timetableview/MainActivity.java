@@ -14,13 +14,12 @@ import com.zhuangfei.android_timetableview.views.DateActivity;
 import com.zhuangfei.android_timetableview.views.DateDelayActivity;
 import com.zhuangfei.android_timetableview.views.ElasticActivity;
 import com.zhuangfei.android_timetableview.views.ExtrasActivity;
-import com.zhuangfei.android_timetableview.views.FlaglayoutActivity;
+import com.zhuangfei.android_timetableview.views.FlagLayoutActivity;
 import com.zhuangfei.android_timetableview.views.ItemStyleActivity;
 import com.zhuangfei.android_timetableview.views.LocalConfigActivity;
 import com.zhuangfei.android_timetableview.views.NonViewActivity;
 import com.zhuangfei.android_timetableview.views.SimpleActivity;
 import com.zhuangfei.android_timetableview.views.SlideActivity;
-import com.zhuangfei.android_timetableview.template.wakeup.WakeupActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -102,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 toTarget(ExtrasActivity.class);
                 break;
             case R.id.id_btn10:
-                toTarget(FlaglayoutActivity.class);
+                toTarget(FlagLayoutActivity.class);
                 break;
             case R.id.id_btn11:
                 toTarget(DateDelayActivity.class);

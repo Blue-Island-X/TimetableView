@@ -1,7 +1,5 @@
 package com.zhuangfei.timetable.utils;
 
-import android.graphics.Color;
-
 import com.zhuangfei.timetable.model.ScheduleColorSet;
 
 /**
@@ -34,7 +32,7 @@ public class ColorUtils {
         if (colorSet != null) {
             colorSet.setBackgroundColor(alphaColor(colorSet.getBackgroundColor(), alpha));
             colorSet.setBorderColor(alphaColor(colorSet.getBorderColor(), alpha));
-            colorSet.setTextColor(alphaColor(colorSet.getBorderColor(), alpha));
+            colorSet.setTextColor(alphaColor(colorSet.getTextColor(), alpha));
         }
         return colorSet;
     }

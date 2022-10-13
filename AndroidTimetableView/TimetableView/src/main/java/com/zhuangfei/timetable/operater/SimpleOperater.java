@@ -191,23 +191,25 @@ public class SimpleOperater extends AbsOperater{
             if (!colorMap.isEmpty() && colorMap.containsKey(subject.getName())){
                 ScheduleColorSet colorSet = colorMap.get(subject.getName());
                 if (colorSet != null) {
+                    ColorUtils.alphaColor(colorSet, mView.itemAlpha());
+
                     textView.setTextColor(colorSet.getTextColor());
-                    drawableCreator.setStrokeColor(ColorUtils.alphaColor(colorSet.getBorderColor(), mView.itemAlpha()));
-                    drawableCreator.setSolidColor(ColorUtils.alphaColor(colorSet.getBackgroundColor(), mView.itemAlpha()));
+                    drawableCreator.setStrokeColor(colorSet.getBorderColor());
+                    drawableCreator.setSolidColor(colorSet.getBackgroundColor());
                 }
             } else {
                 ScheduleColorSet colorSet = mView.colorPool().getColorAutoWithAlpha(subject.getColorRandom(), mView.itemAlpha());
                 if (colorSet != null) {
                     textView.setTextColor(colorSet.getTextColor());
-                    drawableCreator.setStrokeColor(ColorUtils.alphaColor(colorSet.getBorderColor(), mView.itemAlpha()));
-                    drawableCreator.setSolidColor(ColorUtils.alphaColor(colorSet.getBackgroundColor(), mView.itemAlpha()));
+                    drawableCreator.setStrokeColor(colorSet.getBorderColor());
+                    drawableCreator.setSolidColor(colorSet.getBackgroundColor());
                 }
             }
-            drawableCreator.setStrokeWidth(1);
+            drawableCreator.setStrokeWidth(mView.dp2px(1));
             drawableCreator.setCornersRadius(mView.corner(true));
 
             List<Schedule> courseList = ScheduleSupport.findSubjects(subject, originData);
-            int count =0;
+            int count = 0;
             if (courseList != null) {
                 for (int k = 0; k < courseList.size(); k++){
                     Schedule p = courseList.get(k);
@@ -238,12 +240,13 @@ public class SimpleOperater extends AbsOperater{
                     drawableCreator.setSolidColor(colorSet.getBackgroundColor());
                 }
             }
-            drawableCreator.setStrokeWidth(1);
+            drawableCreator.setStrokeWidth(mView.dp2px(1));
             drawableCreator.setCornersRadius(mView.corner(false));
         }
 
-        layout.setBackgroundDrawable(drawableCreator.build());
-        mView.onItemBuildListener().onItemUpdate(layout, textView, countTextView, subject, null);
+        Drawable drawable = drawableCreator.build();
+        layout.setBackgroundDrawable(drawable);
+        mView.onItemBuildListener().onItemUpdate(layout, textView, countTextView, subject, (GradientDrawable) drawable);
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -325,7 +328,7 @@ public class SimpleOperater extends AbsOperater{
         flagLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mView.onFlaglayoutClickListener().onFlaglayoutClick(finalDay,start);
+                mView.onFlaglayoutClickListener().onFlagLayoutClick(finalDay,start);
             }
         });
     }

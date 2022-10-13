@@ -11,6 +11,18 @@ public class ScheduleColorSet {
     // 文字颜色
     private int textColor;
 
+    // 默认构造体
+    public ScheduleColorSet() {
+
+    }
+
+    // 通过构造体传入颜色参数
+    public ScheduleColorSet(int backgroundColor, int borderColor, int textColor) {
+        this.backgroundColor = backgroundColor;
+        this.borderColor = borderColor;
+        this.textColor = textColor;
+    }
+
     /**
      * 获取背景颜色
      * @return int
